@@ -30,18 +30,40 @@ if(isset($data->problem_statement) && isset($data->severity)){
         $insert_stmt->bindValue(':severity', htmlspecialchars(strip_tags($data->severity)),PDO::PARAM_STR);
 
         if($insert_stmt->execute()){
-            $msg['message'] = 'Data Inserted Successfully';
+           // $msg['message'] = 'Data Inserted Successfully';
+            header('HTTP/1.0 201 Created');
+            $response=array(
+                'status' => 201,
+                'status_message' =>'Data Inserted Successfully'
+            );
+
         }else{
-            $msg['message'] = 'Data not Inserted';
+          //  $msg['message'] = 'Data not Inserted';
+            header('HTTP/1.0 401 Unauthorized');
+            $response=array(
+                'status' => 401,
+                'status_message' =>'Data not Inserted'
+            );
         }
 
     }else{
-        $msg['message'] = 'Oops! empty field detected. Please fill all the fields';
+       // $msg['message'] = 'Oops! empty field detected. Please fill all the fields';
+        header('HTTP/1.0 204 No Content');
+        $response=array(
+            'status' => 204,
+            'status_message' =>'Oops! empty field detected. Please fill all the fields'
+        );
     }
 }
 else{
-    $msg['message'] = 'Please fill all the fields | problem_statement, severity';
+   // $msg['message'] = 'Please fill all the fields | problem_statement, severity';
+
+    header('HTTP/1.0 400 Bad Request');
+    $response=array(
+        'status' => 400,
+        'status_message' =>'Oops! empty field detected. Please fill all the fields'
+    );
 }
 //ECHO DATA IN JSON FORMAT
-echo  json_encode($msg);
+echo  json_encode($response);
 ?>
