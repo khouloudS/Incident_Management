@@ -30,7 +30,7 @@ if(isset($data->id)){
     //CHECK WHETHER THERE IS ANY ticket IN OUR DATABASE
     if($get_stmt->rowCount() > 0){
 
-        // FETCH ticket FROM DATBASE
+        // FETCH TICKET FROM DATABASE
         $row = $get_stmt->fetch(PDO::FETCH_ASSOC);
 
         // CHECK, IF NEW UPDATE REQUEST DATA IS AVAILABLE THEN SET IT OTHERWISE SET OLD DATA
