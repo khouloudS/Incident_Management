@@ -8,7 +8,7 @@ The target audiance of this project is the the Heavytech recruitment team
 
 ## High level overview
 
-This deliverable consists of the creation of Resful API using API Platform.
+This deliverable consists of the creation of simple Resful API using PHP.
 
 ## The HTTP requests supported are
 
