@@ -47,7 +47,9 @@ if($stmt->rowCount() > 0){
             'severity' => html_entity_decode($row['severity'])
         ];
         // PUSH TICKET DATA IN OUR $tickets_array ARRAY
+        header('HTTP/1.0 200 OK');
         array_push($tickets_array, $ticket_data);
+
     }
     //SHOW TICKET/TICKET IN JSON FORMAT
     echo json_encode($tickets_array);
@@ -55,8 +57,8 @@ if($stmt->rowCount() > 0){
 
 }
 else{
-    //IF THER IS NO TICKETS IN OUR DATABASE
-    header('HTTP/1.0 400 Bad Request');
+    //IF THERE IS NO TICKETS IN OUR DATABASE
+    header('HTTP/1.0 404 Not found');
     $response=array(
         'status' => 404,
         'status_message' =>'No ticket found'
